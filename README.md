@@ -1,7 +1,27 @@
 bay-search-engine
 =================
 
+== DESCRIPTION:
+
 Lucene based web crawler/index/query web service
+
+== FEATURES/PROBLEMS:
+
+* Currently a basic prototype only
+
+== SYNOPSIS:
+
+
+
+== REQUIREMENTS:
+
+
+
+== INSTALL:
+
+ 
+
+== LICENSE:
 
 Copyright [2013] [Joseph Swager]
 
