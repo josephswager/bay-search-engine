@@ -1,13 +1,26 @@
 apply plugin: 'groovy'
-apply plugin: 'war'
-apply plugin: 'idea'
+apply plugin: 'java'
+apply  plugin: 'war'
+apply  plugin: 'idea'
 
 repositories {
+
   mavenCentral()
+  mavenRepo urls: "http://www.gripes-project.org/libs"
+  mavenRepo name: "jboss-snapshots", urls: "http://snapshots.jboss.org/maven2/"
+  mavenRepo name: "jboss-public", urls: "https://repository.jboss.org/nexus/content/groups/public/"
+  mavenRepo name: "atlassian", urls: "https://maven.atlassian.com/content/groups/public/"
+  mavenRepo name: "ibiblio", urls: "http://mirrors.ibiblio.org/maven2/"
+  mavenRepo name: "Public online Restlet repository", urls: "http://maven.restlet.org"
+
 }
 
 dependencies {
   compile 'org.codehaus.groovy:groovy-all:2.0.5'
+  compile 'net.sourceforge.stripes:stripes:1.5.7'
+  compile 'org.apache.lucene:lucene-core:3.0.2'
+  compile 'org.restlet.jee:org.restlet:2.0.0'
   testCompile 'junit:junit:4.10'
+  testCompile 'org.restlet.jee:org.restlet.test:2.0.0'
 
 }

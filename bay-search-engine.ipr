@@ -23,6 +23,11 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="GradleSettings">
+    <option name="gradleHome" value="/Applications/gradle-1.5" />
+    <option name="linkedProjectPath" value="$PROJECT_DIR$/build.gradle" />
+    <option name="preferLocalInstallationToWrapper" value="true" />
+  </component>
   <component name="GradleUISettings">
     <setting name="root" />
   </component>
@@ -182,6 +187,83 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+  </component>
+  <component name="libraryTable">
+    <library name="commons-logging-1.1.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/commons-logging/commons-logging/1.1.1/jar/5043bfebc3db072ed80fbd362e7caf00e885d8ae/commons-logging-1.1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/commons-logging/commons-logging/1.1.1/source/f3f156cbff0e0fb0d64bfce31a352cce4a33bc19/commons-logging-1.1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="groovy-all-2.0.5">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.codehaus.groovy/groovy-all/2.0.5/jar/caef1126e5358bf1327e8b4381a827da9accbb47/groovy-all-2.0.5.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.codehaus.groovy/groovy-all/2.0.5/source/77c137f40bebfc3d9c49f6bf819840b613f60d18/groovy-all-2.0.5-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="hamcrest-core-1.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.hamcrest/hamcrest-core/1.1/jar/860340562250678d1a344907ac75754e259cdb14/hamcrest-core-1.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.hamcrest/hamcrest-core/1.1/source/2ccf1154d1a8936042a8a742dc3e611d02ac7213/hamcrest-core-1.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="junit-4.10">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/junit/junit/4.10/jar/e4f1766ce7404a08f45d859fb9c226fc9e41a861/junit-4.10.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/junit/junit/4.10/source/6c98d6766e72d5575f96c9479d1c1d3b865c6e25/junit-4.10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="lucene-core-3.0.2">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.apache.lucene/lucene-core/3.0.2/jar/c2b48995ab855c1b9ea13867a0f976c994e0105d/lucene-core-3.0.2.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.apache.lucene/lucene-core/3.0.2/source/d26052fcf6e413c34a6c3907029c6aac328f8630/lucene-core-3.0.2-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="org.osgi.core-4.0.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.osgi/org.osgi.core/4.0.0/jar/e9ba9c33b050480c605e06465cb901e0c4115f86/org.osgi.core-4.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="org.restlet-2.0.0">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.restlet.jee/org.restlet/2.0.0/jar/d98f9da4f3c34d93b9fdff2579776baaebed523b/org.restlet-2.0.0.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/org.restlet.jee/org.restlet/2.0.0/source/6af6e7e0013b66169fd467bae6c7ade60ef42527/org.restlet-2.0.0-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="stripes-1.5.7">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/net.sourceforge.stripes/stripes/1.5.7/jar/c5eb5c8fa66cb9c50e1c6d035d85fac9b5720b62/stripes-1.5.7.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/net.sourceforge.stripes/stripes/1.5.7/source/aabbb550eade94ddb14353abcbd5edc4b7ad8398/stripes-1.5.7-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="unresolved dependency - org.restlet.jee org.restlet.test 2.0">
+      <CLASSES />
+      <JAVADOC />
+      <SOURCES />
+    </library>
   </component>
 </project>
 
