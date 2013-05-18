@@ -35,16 +35,8 @@
     <orderEntry type="library" exported="" name="stripes-1.5.7" level="project" />
     <orderEntry type="library" exported="" name="org.osgi.core-4.0.0" level="project" />
     <orderEntry type="library" exported="" name="org.restlet-2.0.0" level="project" />
-    <orderEntry type="module-library" scope="TEST">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/unresolved dependency - org.restlet.jee org.restlet.test 2.0.0" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" scope="TEST" name="unresolved dependency - org.restlet.jee org.restlet.test 2.0" level="project" />
+    <orderEntry type="library" exported="" name="jsoup-1.7.1" level="project" />
+    <orderEntry type="library" exported="" name="org.restlet-2.1.2" level="project" />
   </component>
 </module>
 
