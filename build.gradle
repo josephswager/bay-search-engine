@@ -25,3 +25,22 @@ dependencies {
 
 
 }
+
+
+buildscript {
+  repositories {
+    maven {
+      url uri('file://' + project.projectDir + '/repo')
+    }
+  }
+  dependencies {
+      classpath "org.vbossica:gradle-glassfish3-plugin:1.0-SNAPSHOT"
+
+  }
+}
+apply plugin: 'glassfish3'
+
+glassfish3 {
+  asadminExec = file('/usr/share/glassfish3/bin/asadmin')
+  domainDir = file('/usr/share/glassfish3/glassfish/domains/')
+}

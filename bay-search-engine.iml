@@ -33,8 +33,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" exported="" name="lucene-core-3.0.2" level="project" />
     <orderEntry type="library" exported="" name="stripes-1.5.7" level="project" />
-    <orderEntry type="library" exported="" name="org.osgi.core-4.0.0" level="project" />
-    <orderEntry type="library" exported="" name="org.restlet-2.0.0" level="project" />
     <orderEntry type="library" exported="" name="jsoup-1.7.1" level="project" />
     <orderEntry type="library" exported="" name="org.restlet-2.1.2" level="project" />
   </component>
