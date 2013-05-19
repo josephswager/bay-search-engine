@@ -176,6 +176,9 @@
       </item>
     </group>
   </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="josephswager" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/bay-search-engine.iml" filepath="$PROJECT_DIR$/bay-search-engine.iml" />

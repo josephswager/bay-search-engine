@@ -8,5 +8,5 @@ import org.restlet.resource.ServerResource as SR
  * Time: 4:17 PM
  * To change this template use File | Settings | File Templates.
  */
-class GetSearchResults extends SR {
+class SearchResultsGrabber extends SR {
 }

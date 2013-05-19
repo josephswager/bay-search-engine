@@ -1,6 +1,6 @@
 package com.baysearch.restlet.app
 
-import com.baysearch.restlet.actions.GetSearchResults
+import com.baysearch.restlet.actions.SearchResultsGrabber
 import org.restlet.Application
 import org.restlet.Restlet
 import org.restlet.routing.Router
@@ -21,7 +21,7 @@ class BAYSearchApplication extends Application{
   Restlet createInboundRoot() {
     def router = new Router(getContext())
 
-    router.attach("/result", GetSearchResults.class)
+    router.attach("/result", SearchResultsGrabber.class)
 
     return router    //To change body of overridden methods use File | Settings | File Templates.
   }
