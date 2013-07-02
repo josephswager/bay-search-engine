@@ -9,53 +9,129 @@ import org.jsoup.select.Elements
  * @author jswager
  */
 public class LinkParser {
-	def url
-	URL[] linkArray
-	def vector
-	Document doc;
+  def url
+  Set<URL> syncLinkSet
+  Document doc;
+  def domainURL
 
-	/**
-	 * Default Constructor
-	 * @param Url
-	 */
-	public LinkParser(String Url) {
-		url = Url
-	}
+  /**
+   * Default Constructor
+   * @param Url
+   * @param DomainURL
+   */
+  public LinkParser(Url, DomainURL) {
+    url = Url
+    domainURL = DomainURL
+  }
 
-	/**
-	 * Extracts links from the current html page
-	 * @return
-	 */
-	public URL[] ExtractLinks(){
-		vector = new Vector()
-		// build the document to parse based on the dom selection
-		try {
-			doc = Jsoup.parse(new URL(url), 15000); // it times out in 15,000 milliseconds = 15 seconds
-		} catch (IOException e) {
-			System.out.println("Jsoup parser failed to build or timed out on URL: " + url)
-		}
+  /**
+   * Extracts links from the current html page
+   * @return HashSet<URL> - all unique links of current page
+   */
+  public Set<URL> ExtractLinks() throws Exception {
 
-		Elements robots = doc.select("meta[name=robots]")
-		if(robots.attr("content").contains("NOFOLLOW")){
-			linkArray = new URL[0]
-			return (linkArray)
-		} else {
-			Elements links = doc.select("a[href]")
+    // build the document to parse based on the current URLs dom
+    try {
+      doc = Jsoup.parse(new URL(url), 15000); // it times out in 15,000 milliseconds = 15 seconds
+    } catch (IOException e) {
+      System.out.println("Jsoup parser failed to build or timed out on URL: " + url)
+    }
 
-			for (Element link : links) {
-				def currentLink =link.attr("href")
-				try {
-					if(currentLink.size() < 15 || currentLink.contains("javascript:history.go")){//test size to keep href such as # from being processed
-					} else { vector.add( new URL((currentLink).replace(" ", "%20")) )} // href not processed continue through list
-				} catch (MalformedURLException e) {
-					println "ERROR >>>>>>>>> MalformedURL: " + link.toString()
-				}
-			}
+    Elements robots = findSEOMetaRobotDataFollowRule(doc)
+    if(robots.attr("content").contains("NOFOLLOW")){
+      return returnEmptyURLSet()
+    } else {
+      Elements links = getAllLinkOfCurrentDocuemnt()
+      syncLinkSet = buildURLLinkSetToReturn(links)
 
-			linkArray = new URL[vector.size ()]
-			vector.copyInto (linkArray)
+      return syncLinkSet
+    }
+  }
 
-			return (linkArray)
-		}
-	}
+  /**
+   *
+   * @param doc
+   * @return
+   * @throws Exception
+   */
+  private Elements findSEOMetaRobotDataFollowRule(Document doc) throws Exception{
+    return doc.select("meta[name=robots]")
+  }
+
+  /**
+   *
+   * @return
+   * @throws NullPointerException
+   */
+  private Set<URL> returnEmptyURLSet() throws NullPointerException{
+    return (new HashSet<URL>().empty)
+  }
+
+  /**
+   *
+   * @return
+   * @throws Exception
+   */
+  private Elements getAllLinkOfCurrentDocuemnt() throws Exception{
+    Elements links = doc.select("a[href]")
+    return links
+  }
+
+  /**
+   *
+   * @param links
+   * @return
+   * @throws Exception
+   */
+  private Set<URL> buildURLLinkSetToReturn(Elements links) throws Exception {
+    Set<URL> urlSetOfCurrentPagesLinks =  new HashSet<URL>()
+    for (Element link : links) {
+      String currentLink =link.attr("href")
+      String theLink
+      theLink = buildFullLink(currentLink)
+      try {
+        //test size to keep href such as # from being processed
+        if( isLinkValid(theLink) ){
+          urlSetOfCurrentPagesLinks.add(buildURLwithCorrectSpaceCoding(theLink))}
+      } catch (MalformedURLException e) {
+        println "ERROR >>>>>>>>> MalformedURL: " + link.toString()
+      }
+    }
+    return urlSetOfCurrentPagesLinks
+  }
+
+  /**
+   *
+   * @param currentLink
+   * @return
+   */
+  private def buildFullLink(String currentLink) {
+    if ( currentLink.startsWith("http://") ) {
+      return currentLink
+    } else {
+      if ( currentLink.startsWith("/") ) {
+        return domainURL + currentLink
+      } else {
+        return domainURL + "/" + currentLink
+      }
+    }
+  }
+
+  /**
+   *
+   * @param theLink
+   * @return
+   */
+  private def buildURLwithCorrectSpaceCoding(String theLink) {
+    return new URL((theLink).replace(" ", "%20"))
+  }
+
+  /**
+   *
+   * @param theLink
+   * @return
+   */
+  private boolean isLinkValid(String theLink) {
+    return theLink.size() > 15 || !theLink.contains("javascript:history.go")
+  }
 }

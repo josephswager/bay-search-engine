@@ -1,6 +1,7 @@
 package com.baysearch.restlet.actions
 
 import org.restlet.resource.ServerResource as SR
+
 /**
  * Created with IntelliJ IDEA.
  * User: josephswager

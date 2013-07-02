@@ -23,7 +23,7 @@ class SiteCrawler {
   /**
    *
    */
-  def firstCrawl(){
+  def firstCrawl() {
 
   }
 

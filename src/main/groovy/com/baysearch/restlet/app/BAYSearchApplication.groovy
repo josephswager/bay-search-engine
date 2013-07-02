@@ -12,7 +12,7 @@ import org.restlet.routing.Router
  * Time: 4:04 PM
  * To change this template use File | Settings | File Templates.
  */
-class BAYSearchApplication extends Application{
+class BAYSearchApplication extends Application {
   /**
    *
    * @return

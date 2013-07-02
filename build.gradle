@@ -1,7 +1,7 @@
 apply plugin: 'groovy'
 apply plugin: 'java'
-apply  plugin: 'war'
-apply  plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'idea'
 
 repositories {
 
@@ -11,6 +11,7 @@ repositories {
   mavenRepo name: "jboss-public", urls: "https://repository.jboss.org/nexus/content/groups/public/"
   mavenRepo name: "atlassian", urls: "https://maven.atlassian.com/content/groups/public/"
   mavenRepo name: "ibiblio", urls: "http://mirrors.ibiblio.org/maven2/"
+  mavenRepo name: "SpringSource Repository", urls: "http://repo.springsource.org/release"
   mavenRepo name: "Public online Restlet repository", urls: "http://maven.restlet.org"
 
 }
@@ -21,8 +22,9 @@ dependencies {
   compile 'org.apache.lucene:lucene-core:3.0.2'
   compile 'org.restlet.jee:org.restlet:2.1.2'
   compile 'org.jsoup:jsoup:1.7.1'
+  compile 'org.springframework:spring-context:3.2.3.RELEASE'
+  compile 'org.apache.tika:tika-parsers:1.3'
   testCompile 'junit:junit:4.10'
-
 
 }
 
@@ -34,7 +36,7 @@ buildscript {
     }
   }
   dependencies {
-      classpath "org.vbossica:gradle-glassfish3-plugin:1.0-SNAPSHOT"
+    classpath "org.vbossica:gradle-glassfish3-plugin:1.0-SNAPSHOT"
 
   }
 }

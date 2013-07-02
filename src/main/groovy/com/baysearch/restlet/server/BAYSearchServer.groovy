@@ -10,8 +10,8 @@ import org.restlet.Component
  * Time: 3:59 PM
  * To change this template use File | Settings | File Templates.
  */
-class BAYSearchServer extends Component{
-  BAYSearchServer() throws Exception{
+class BAYSearchServer extends Component {
+  BAYSearchServer() throws Exception {
     setname("Restful Application that returns query results of crawled Site's Index")
     getDefaultHost().attach(new BAYSearchApplication())
   }

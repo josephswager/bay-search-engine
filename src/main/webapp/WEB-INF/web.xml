@@ -5,12 +5,11 @@
         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 
+  <display-name>BAY-CRAWL-SEARCH</display-name>
 
-    <display-name>BAY-CRAWL-SEARCH</display-name>
 
-
-    <welcome-file-list>
-        <welcome-file>/</welcome-file>
-    </welcome-file-list>
+  <welcome-file-list>
+    <welcome-file>/</welcome-file>
+  </welcome-file-list>
 
 </web-app>
