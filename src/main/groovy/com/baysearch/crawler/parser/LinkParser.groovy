@@ -32,13 +32,13 @@ public class LinkParser {
 
     // build the document to parse based on the current URLs dom
     try {
-      doc = Jsoup.parse(new URL(url), 15000); // it times out in 15,000 milliseconds = 15 seconds
-    } catch (IOException e) {
-      System.out.println("Jsoup parser failed to build or timed out on URL: " + url)
+      doc = buildDOM()
+    }catch (IOException e) {
+      println "Jsoup parser failed to build or timed out on URL: " + url
     }
 
     Elements robots = findSEOMetaRobotDataFollowRule(doc)
-    if(robots.attr("content").contains("NOFOLLOW")){
+    if( hasRobotNoFollow(robots) ){
       return returnEmptyURLSet()
     } else {
       Elements links = getAllLinkOfCurrentDocuemnt()
@@ -46,6 +46,19 @@ public class LinkParser {
 
       return syncLinkSet
     }
+  }
+
+  /**
+   *
+   * @param robots
+   * @return
+   */
+  private boolean hasRobotNoFollow(Elements robots) {
+    return robots.attr("content").contains("NOFOLLOW")
+  }
+
+  private Document buildDOM() throws IOException{
+      return Jsoup.parse(new URL(url), 15000); // it times out in 15,000 milliseconds = 15 seconds
   }
 
   /**
@@ -73,8 +86,7 @@ public class LinkParser {
    * @throws Exception
    */
   private Elements getAllLinkOfCurrentDocuemnt() throws Exception{
-    Elements links = doc.select("a[href]")
-    return links
+    return doc.select("a[href]")
   }
 
   /**
@@ -86,7 +98,7 @@ public class LinkParser {
   private Set<URL> buildURLLinkSetToReturn(Elements links) throws Exception {
     Set<URL> urlSetOfCurrentPagesLinks =  new HashSet<URL>()
     for (Element link : links) {
-      String currentLink =link.attr("href")
+      String currentLink = link.attr("href")
       String theLink
       theLink = buildFullLink(currentLink)
       try {
