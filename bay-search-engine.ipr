@@ -538,7 +538,11 @@
     </group>
   </component>
   <component name="ProjectDictionaryState">
-    <dictionary name="josephswager" />
+    <dictionary name="josephswager">
+      <words>
+        <w>mysite</w>
+      </words>
+    </dictionary>
   </component>
   <component name="ProjectModuleManager">
     <modules>
