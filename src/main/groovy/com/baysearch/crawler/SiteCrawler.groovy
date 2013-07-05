@@ -1,17 +1,18 @@
 package com.baysearch.crawler
 
+import javolution.util.FastSet
 import org.apache.lucene.index.IndexWriter
 
 /**
  * Created with IntelliJ IDEA.
- * User: josephswager
- * Date: 5/18/13
+ * User: Joseph Swager
+ * Date: 3/18/13
  * Time: 3:37 PM
- * To change this template use File | Settings | File Templates.
+ * @author Joseph Swager
  */
 class SiteCrawler {
   static IndexWriter writer
-  static ArrayList indexed
+  static FastSet indexed
   static def beginDomain
 
   /**

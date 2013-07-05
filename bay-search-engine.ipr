@@ -710,6 +710,15 @@
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/com.googlecode.mp4parser/isoparser/1.0-RC-1/source/f2caf104639fb6be85aceeec199712e906c40c98/isoparser-1.0-RC-1-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="javolution-5.5.1">
+      <CLASSES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/javolution/javolution/5.5.1/bundle/3fcba819cdb7861728405963ddc4b2755ab182e5/javolution-5.5.1.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES>
+        <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/javolution/javolution/5.5.1/source/aa34cc1954bd712fae27743a2b4b70c01c0fb0f5/javolution-5.5.1-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="jdom-1.0">
       <CLASSES>
         <root url="jar://$USER_HOME$/.gradle/caches/artifacts-23/filestore/jdom/jdom/1.0/jar/a2ac1cd690ab4c80defe7f9bce14d35934c35cec/jdom-1.0.jar!/" />

@@ -12,7 +12,7 @@ import org.restlet.Component
  */
 class BAYSearchServer extends Component {
   BAYSearchServer() throws Exception {
-    setname("Restful Application that returns query results of crawled Site's Index")
+    setName("Restful Application that returns query results of crawled Site's Index")
     getDefaultHost().attach(new BAYSearchApplication())
   }
 }

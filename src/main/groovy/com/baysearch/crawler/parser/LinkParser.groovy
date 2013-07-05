@@ -1,16 +1,19 @@
 package com.baysearch.crawler.parser
 
+import javolution.util.FastSet
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
+import groovy.util.logging.*
 
 /**
  * @author jswager
  */
+@Log4j
 public class LinkParser {
   def url
-  Set<URL> syncLinkSet
+  FastSet<URL> syncLinkSet
   Document doc;
   def domainURL
 
@@ -26,22 +29,23 @@ public class LinkParser {
 
   /**
    * Extracts links from the current html page
-   * @return HashSet<URL> - all unique links of current page
+   * @return HashSet < URL >  - all unique links of current page
    */
-  public Set<URL> ExtractLinks() throws Exception {
+  public FastSet<URL> ExtractLinks() throws Exception {
 
     // build the document to parse based on the current URLs dom
     try {
       doc = buildDOM()
-    }catch (IOException e) {
-      println "Jsoup parser failed to build or timed out on URL: " + url
+    } catch (IOException e) {
+      logErrorStackTrace(e)
+      log.info "Jsoup parser failed to build or timed out on URL: " + url
     }
 
     Elements robots = findSEOMetaRobotDataFollowRule(doc)
-    if( hasRobotNoFollow(robots) ){
+    if ( hasRobotNoFollow(robots) ) {
       return returnEmptyURLSet()
     } else {
-      Elements links = getAllLinkOfCurrentDocuemnt()
+      Elements links = getAllLinkOfCurrentDocument()
       syncLinkSet = buildURLLinkSetToReturn(links)
 
       return syncLinkSet
@@ -53,12 +57,18 @@ public class LinkParser {
    * @param robots
    * @return
    */
-  private boolean hasRobotNoFollow(Elements robots) {
-    return robots.attr("content").contains("NOFOLLOW")
+  private static boolean hasRobotNoFollow(robots) {
+    final String NOFOLLOW = "NOFOLLOW"
+    return robots.attr("content").contains(NOFOLLOW)
   }
 
-  private Document buildDOM() throws IOException{
-      return Jsoup.parse(new URL(url), 15000); // it times out in 15,000 milliseconds = 15 seconds
+  /**
+   *
+   * @return
+   * @throws IOException
+   */
+  private Document buildDOM() throws IOException {
+    return Jsoup.parse(new URL(url), 15000); // it times out in 15,000 milliseconds = 15 seconds
   }
 
   /**
@@ -67,7 +77,7 @@ public class LinkParser {
    * @return
    * @throws Exception
    */
-  private Elements findSEOMetaRobotDataFollowRule(Document doc) throws Exception{
+  private static Elements findSEOMetaRobotDataFollowRule(doc) throws Exception {
     return doc.select("meta[name=robots]")
   }
 
@@ -76,8 +86,8 @@ public class LinkParser {
    * @return
    * @throws NullPointerException
    */
-  private Set<URL> returnEmptyURLSet() throws NullPointerException{
-    return (new HashSet<URL>().empty)
+  private static def returnEmptyURLSet() throws NullPointerException {
+    return (new FastSet<URL>())
   }
 
   /**
@@ -85,7 +95,7 @@ public class LinkParser {
    * @return
    * @throws Exception
    */
-  private Elements getAllLinkOfCurrentDocuemnt() throws Exception{
+  private Elements getAllLinkOfCurrentDocument() throws Exception {
     return doc.select("a[href]")
   }
 
@@ -95,18 +105,21 @@ public class LinkParser {
    * @return
    * @throws Exception
    */
-  private Set<URL> buildURLLinkSetToReturn(Elements links) throws Exception {
-    Set<URL> urlSetOfCurrentPagesLinks =  new HashSet<URL>()
-    for (Element link : links) {
+  private FastSet<URL> buildURLLinkSetToReturn(Elements links) throws Exception {
+    FastSet<URL> urlSetOfCurrentPagesLinks
+    urlSetOfCurrentPagesLinks = new FastSet<URL>()
+    for ( Element link : links ) {
       String currentLink = link.attr("href")
       String theLink
       theLink = buildFullLink(currentLink)
       try {
         //test size to keep href such as # from being processed
-        if( isLinkValid(theLink) ){
-          urlSetOfCurrentPagesLinks.add(buildURLwithCorrectSpaceCoding(theLink))}
+        if ( isLinkValid(theLink) ) {
+          urlSetOfCurrentPagesLinks.add(buildURLwithCorrectSpaceCoding(theLink))
+        }
       } catch (MalformedURLException e) {
-        println "ERROR >>>>>>>>> MalformedURL: " + link.toString()
+        logErrorStackTrace(e)
+        log.info "ERROR >>>>>>>>> MalformedURL: " + link.toString()
       }
     }
     return urlSetOfCurrentPagesLinks
@@ -117,7 +130,7 @@ public class LinkParser {
    * @param currentLink
    * @return
    */
-  private def buildFullLink(String currentLink) {
+  private def buildFullLink(currentLink) {
     if ( currentLink.startsWith("http://") ) {
       return currentLink
     } else {
@@ -134,8 +147,8 @@ public class LinkParser {
    * @param theLink
    * @return
    */
-  private def buildURLwithCorrectSpaceCoding(String theLink) {
-    return new URL((theLink).replace(" ", "%20"))
+  private static def buildURLwithCorrectSpaceCoding(theLink) {
+    return new URL(URLEncoder.encode((theLink), "UTF-8"))
   }
 
   /**
@@ -143,7 +156,28 @@ public class LinkParser {
    * @param theLink
    * @return
    */
-  private boolean isLinkValid(String theLink) {
-    return theLink.size() > 15 || !theLink.contains("javascript:history.go")
+  private static boolean isLinkValid(theLink) {
+    return theLink.size() > 15 || !theLink.contains("javascript:history")
+  }
+
+  /**
+   *
+   * @param currentLink
+   * @return
+   */
+  private def isAnExcelFile(currentLink) {
+
+    return (currentLink.attr("href").toString().toLowerCase().endsWith(".xls") ||
+            currentLink.attr("href").toString().toLowerCase().endsWith(".xlsx"))
+  }
+
+  /**
+   *
+   * @param e
+   * @return
+   */
+  private static logErrorStackTrace(final Exception e) {
+    def error = e.printStackTrace().toString()
+    log.error error
   }
 }
