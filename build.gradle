@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+  compile 'junit:junit:4.11'
   compile 'org.codehaus.groovy:groovy-all:2.0.5'
   compile 'net.sourceforge.stripes:stripes:1.5.7'
   compile 'org.apache.lucene:lucene-core:3.0.2'

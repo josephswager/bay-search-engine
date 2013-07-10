@@ -7,17 +7,17 @@ package com.baysearch.config
  * Time: 1:22 AM
  * To change this template use File | Settings | File Templates.
  */
-class ApplicationProperties {
+public class ApplicationProperties {
 
-  def config
+  def theConfig
 
   public ApplicationProperties(){
 
   }
   public ApplicationProperties(String env){
     ApplicationProperties ap = new ApplicationProperties()
-    //noinspection GrDeprecatedAPIUsage
-    ap.setConfig(new ConfigSlurper("$env").parse(new File('mysite.groovy').toURL()) as ConfigSlurper)
+    InputStream ip = GroovyClassLoader.getSystemResourceAsStream('src/main/groovy/com/baysearch/config/Siteconfig.groovy')
+    ap.setTheConfig(new ConfigSlurper('prod').parse(ip.getText()))
 
 
   }
